@@ -1,0 +1,25 @@
+# Copyright 2021 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=8
+
+NEED_EMACS="24.3"
+
+inherit elisp
+
+DESCRIPTION="An alternative to the message function that allows for \
+semi-permanent hints inside of the echo area."
+HOMEPAGE="https://github.com/abo-abo/hydra"
+SRC_URI="https://github.com/abo-abo/hydra/archive/refs/tags/${PV}.tar.gz -> hydra-${PV}.tar.gz"
+S="${WORKDIR}/hydra-${PV}"
+
+LICENSE="GPL-3+"
+SLOT="0"
+KEYWORDS="~amd64"
+
+RESTRICT="test" # the tests target hydra and not lv, so we should skip them
+SITEFILE="50lv-gentoo.el"
+PATCHES=(
+	"${FILESDIR}/${PN}-require-cl-lib.patch"
+)
+ELISP_REMOVE="hydra-examples.el hydra-ox.el hydra-test.el hydra.el"
