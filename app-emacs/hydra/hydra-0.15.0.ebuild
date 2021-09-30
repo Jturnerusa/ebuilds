@@ -20,7 +20,7 @@ RDEPEND=">=app-emacs/lv-0.15.0"
 DEPEND="${RDEPEND}"
 
 SITEFILE="50hydra-gentoo.el"
-DOCS=( README.md )
+DOCS=( README.md doc/Changelog.org )
 ELISP_REMOVE="hydra-examples.el hydra-ox.el lv.el"
 
 src_compile() {
