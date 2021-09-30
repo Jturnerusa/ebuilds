@@ -16,7 +16,7 @@ LICENSE="GPL-3+"
 KEYWORDS="~amd64"
 
 SITEFILE="50${PN}-gentoo.el"
-DOCS=( README.md )
+DOCS=( README.md  doc/Changelog.org )
 ELISP_REMOVE=".dir-locals.el"
 
 src_compile() {
