@@ -7,8 +7,7 @@ NEED_EMACS="24.3"
 
 inherit elisp
 
-DESCRIPTION="An alternative to the message function that allows for \
-semi-permanent hints inside of the echo area."
+DESCRIPTION="Put semi-permanent hints in the echo area"
 HOMEPAGE="https://github.com/abo-abo/hydra"
 SRC_URI="https://github.com/abo-abo/hydra/archive/refs/tags/${PV}.tar.gz -> hydra-${PV}.tar.gz"
 S="${WORKDIR}/hydra-${PV}"
