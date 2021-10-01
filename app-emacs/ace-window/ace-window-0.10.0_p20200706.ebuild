@@ -9,6 +9,8 @@ inherit elisp
 
 DESCRIPTION="GNU Emacs package for selecting a window to switch to"
 HOMEPAGE="https://github.com/abo-abo/ace-window"
+# Last github release is from 2015 which is extremely outdated.
+# This snapshot is from 2020 and also is what melpa stable tracks.
 COMMIT="c7cb315c14e36fded5ac4096e158497ae974bec9"
 SRC_URI="https://github.com/abo-abo/ace-window/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
 S="${WORKDIR}/${PN}-${COMMIT}"
