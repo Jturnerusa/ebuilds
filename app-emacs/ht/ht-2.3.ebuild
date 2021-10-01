@@ -5,7 +5,7 @@ EAPI=8
 
 inherit elisp
 
-DESCRIPTION="The missing hash table library for Emacs."
+DESCRIPTION="The missing hash table library for Emacs"
 HOMEPAGE="https://github.com/Wilfred/ht.el"
 SRC_URI="https://github.com/Wilfred/ht.el/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 S="${WORKDIR}/${PN}.el-${PV}"
