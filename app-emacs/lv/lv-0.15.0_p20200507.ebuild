@@ -8,10 +8,14 @@ NEED_EMACS="24.3"
 inherit elisp
 
 DESCRIPTION="Put semi-permanent hints in the echo area"
+# This snapshot is only one commit ahead of 0.15.0 and only
+# changes a single line. The line adds a require ’cl-lib
+# to prevent emacs from erroring or warning about cl-lib
+# not being available.
+MY_COMMIT="87873d788891029d9e44fa5458321d6a05849b94"
 HOMEPAGE="https://github.com/abo-abo/hydra"
-COMMIT="87873d788891029d9e44fa5458321d6a05849b94"
-SRC_URI="https://github.com/abo-abo/hydra/archive/${COMMIT}.tar.gz -> hydra-${PV}.tar.gz"
-S="${WORKDIR}/hydra-${COMMIT}"
+SRC_URI="https://github.com/abo-abo/hydra/archive/${MY_COMMIT}.tar.gz -> hydra-${PV}.tar.gz"
+S="${WORKDIR}/hydra-${MY_COMMIT}"
 
 LICENSE="GPL-3+"
 SLOT="0"
