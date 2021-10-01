@@ -5,8 +5,7 @@ EAPI=8
 
 inherit elisp
 
-DESCRIPTION="A set of simple functions wrapping Emacs’ existing process \
-creation capabilities."
+DESCRIPTION="A simpler wrapper around emacs process creation functions"
 HOMEPAGE="https://github.com/Alexander-Miller/pfuture"
 SRC_URI="https://github.com/Alexander-Miller/pfuture/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 
