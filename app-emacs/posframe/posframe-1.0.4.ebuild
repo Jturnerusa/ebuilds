@@ -8,10 +8,12 @@ NEED_EMACS="27"
 inherit elisp
 
 DESCRIPTION="Pop a postframe at point"
+# The latest github release is out of date with the actual release.
+# This snapshot is what melpa stable currently targets.
+MY_COMMIT="74f06b77deeb770cd0a96977b1e6bdedb682487a"
 HOMEPAGE="https://github.com/tumashu/posframe"
-COMMIT="74f06b77deeb770cd0a96977b1e6bdedb682487a"
-SRC_URI="https://github.com/tumashu/posframe/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/${PN}-${COMMIT}"
+SRC_URI="https://github.com/tumashu/posframe/archive/${MY_COMMIT}.tar.gz -> ${P}.tar.gz"
+S="${WORKDIR}/${PN}-${MY_COMMIT}"
 
 LICENSE="GPL-3+"
 SLOT="0"
