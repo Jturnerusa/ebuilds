@@ -14,7 +14,12 @@ SRC_URI="https://github.com/Alexander-Miller/treemacs/archive/refs/tags/${PV}.ta
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="evil magit icons-dired" # some flags need packages not yet in gentoo
+IUSE="evil magit icons-dired"
+# TODO: extra flags that need packages not yet in gentoo
+# all-the-icons: app-emacs/all-the-icons
+# persp: app-emacs/persp
+# perspective: app-emacs/perspective
+# projectile: app-emacs/projectile
 
 RDEPEND=">=app-emacs/ace-window-0.10.0_p20200706
 	>=app-emacs/ht-2.3
@@ -25,7 +30,7 @@ RDEPEND=">=app-emacs/ace-window-0.10.0_p20200706
 	magit? ( app-emacs/magit )"
 DEPEND="${RDEPEND}"
 
-RESTRICT="test" # test requires cask and buttercup.el which are not packaged
+RESTRICT="test" # test requires cask and buttercup.el which is not packaged
 SITEFILE="50treemacs-gentoo.el"
 DOCS=( README.org Changelog.org Extensions.org )
 
@@ -53,5 +58,5 @@ src_install() {
 	mkdir -p "${D}/usr/share/${PN}/icons/" || die
 	cp -r "${S}/icons/default/" "${D}/usr/share/${PN}/icons/" || die
 	ln -s "/usr/share/${PN}/icons/" "${D}/${SITELISP}/${PN}/icons" || die
-	cp "${S}"/*.py "${D}/${SITELISP}/${PN}/"
+	cp "${S}"/*.py "${D}/${SITELISP}/${PN}/" || die
 }
