@@ -7,7 +7,7 @@ NEED_EMACS="27"
 
 inherit elisp
 
-DESCRIPTION="Pop a postframe at point."
+DESCRIPTION="Pop a postframe at point"
 HOMEPAGE="https://github.com/tumashu/posframe"
 COMMIT="74f06b77deeb770cd0a96977b1e6bdedb682487a"
 SRC_URI="https://github.com/tumashu/posframe/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
