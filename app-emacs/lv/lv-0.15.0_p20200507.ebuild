@@ -9,9 +9,9 @@ inherit elisp
 
 DESCRIPTION="Put semi-permanent hints in the echo area"
 # This snapshot is only one commit ahead of 0.15.0 and only
-# changes a single line. The line adds a require ’cl-lib
+# changes a single line. The line adds a (require ’cl-lib)
 # to prevent emacs from erroring or warning about cl-lib
-# not being available.
+# not being available during byte compilation.
 MY_COMMIT="87873d788891029d9e44fa5458321d6a05849b94"
 HOMEPAGE="https://github.com/abo-abo/hydra"
 SRC_URI="https://github.com/abo-abo/hydra/archive/${MY_COMMIT}.tar.gz -> hydra-${PV}.tar.gz"
