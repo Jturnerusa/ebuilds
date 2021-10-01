@@ -7,7 +7,7 @@ NEED_EMACS="26.1"
 
 inherit elisp
 
-DESCRIPTION="A simple alternative to read-string that allows reading input via a small child-frame spawned at the position of the cursor."
+DESCRIPTION="Use a small frame at the cursor to read input"
 HOMEPAGE="https://github.com/Alexander-Miller/cfrs"
 SRC_URI="https://github.com/Alexander-Miller/cfrs/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 
@@ -16,8 +16,8 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND=">=app-emacs/dash-2.11.0
->=app-emacs/posframe-0.8.5
->=app-emacs/s-1.10.0"
+	>=app-emacs/posframe-0.8.5
+	>=app-emacs/s-1.10.0"
 RDEPEND="${DEPEND}"
 
 SITEFILE="50cfrs-gentoo.el"
