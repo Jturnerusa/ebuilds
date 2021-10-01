@@ -13,4 +13,9 @@
     <remote-id type="github">abo-abo/hydra</remote-id>
     <doc>https://github.com/abo-abo/hydra/blob/master/README.md</doc>
   </upstream>
+  <longdescription>
+    This is a package for GNU Emacs that can be
+    used to tie related commands into a family
+    of short bindings with a common prefix - a Hydra.
+  </longdescription>
 </pkgmetadata>
