@@ -7,8 +7,7 @@ NEED_EMACS="24.3"
 
 inherit elisp
 
-DESCRIPTION="A package for GNU Emacs that can be used to tie related commands \
-into a family of short bindings with a common prefix - a Hydra."
+DESCRIPTION="Chain related commands with bindings that share a prefix"
 HOMEPAGE="https://github.com/abo-abo/hydra"
 SRC_URI="https://github.com/abo-abo/hydra/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 
