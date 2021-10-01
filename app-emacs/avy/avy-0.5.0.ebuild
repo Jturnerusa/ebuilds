@@ -7,7 +7,7 @@ NEED_EMACS="24.1"
 
 inherit elisp
 
-DESCRIPTION="A GNU Emacs package for jumping to visible text using a char-based decision tree."
+DESCRIPTION="A GNU Emacs package for jumping to visible text using a char-based decision tree"
 HOMEPAGE="https://github.com/abo-abo/avy"
 SRC_URI="https://github.com/abo-abo/avy/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 
