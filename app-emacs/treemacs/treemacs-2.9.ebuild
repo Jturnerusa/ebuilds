@@ -5,7 +5,9 @@ EAPI=8
 
 NEED_EMACS="26.1"
 
-inherit elisp
+PYTHON_COMPAT=( python3_9 )
+
+inherit elisp python-single-r1
 
 DESCRIPTION="A tree layout file explorer for Emacs"
 HOMEPAGE="https://github.com/Alexander-Miller/treemacs"
@@ -15,13 +17,15 @@ LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE="evil magit icons-dired"
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 # TODO: extra flags that need packages not yet in gentoo
 # all-the-icons: app-emacs/all-the-icons
-# persp: app-emacs/persp
-# perspective: app-emacs/perspective
-# projectile: app-emacs/projectile
+# persp:         app-emacs/persp
+# perspective:   app-emacs/perspective
+# projectile:    app-emacs/projectile
 
-RDEPEND=">=app-emacs/ace-window-0.10.0_p20200706
+RDEPEND="${PYTHON_DEPS}
+	>=app-emacs/ace-window-0.10.0_p20200706
 	>=app-emacs/ht-2.3
 	>=app-emacs/hydra-0.15.0
 	>=app-emacs/pfuture-1.9
@@ -55,8 +59,14 @@ src_compile() {
 
 src_install() {
 	elisp_src_install
-	mkdir -p "${D}/usr/share/${PN}/icons/" || die
-	cp -r "${S}/icons/default/" "${D}/usr/share/${PN}/icons/" || die
-	ln -s "/usr/share/${PN}/icons/" "${D}/${SITELISP}/${PN}/icons" || die
-	cp "${S}"/*.py "${D}/${SITELISP}/${PN}/" || die
+
+	dodir "/usr/share/${PN}/"
+	dodir "/usr/share/${PN}/icons"
+	insinto "/usr/share/${PN}/icons/"
+	doins -r "${S}/icons/default"
+	dosym \
+		"${EPREFIX}/usr/share/${PN}/icons" \
+		"${EPREFIX}/${SITELISP}/${PN}/icons"
+	insinto "${SITELISP}/${PN}/"
+	doins "${S}"/*.py
 }
