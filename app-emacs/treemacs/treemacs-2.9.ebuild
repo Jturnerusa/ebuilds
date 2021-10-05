@@ -41,12 +41,15 @@ DOCS=( README.org Changelog.org Extensions.org )
 src_unpack() {
 	elisp_src_unpack
 	mv "${S}"/src/{elisp,scripts}/* "${S}/" || die
+
 	if use evil; then
 		mv "${S}/src/extra/treemacs-evil.el" "${S}/" || die
 	fi
+
 	if use magit; then
 		mv "${S}/src/extra/treemacs-magit.el" "${S}/" || die
 	fi
+
 	if use icons-dired; then
 		mv "${S}/src/extra/treemacs-icons-dired.el" "${S}/" || die
 	fi
