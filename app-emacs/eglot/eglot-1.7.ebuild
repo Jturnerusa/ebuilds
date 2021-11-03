@@ -7,13 +7,22 @@ NEED_EMACS="26.1"
 
 inherit elisp
 
+if [[ ${PV} = 9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/joaotavora/eglot"
+	EGIT_BRANCH="master"
+	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
+	S="${EGIT_CHECKOUT_DIR}"
+else
+	SRC_URI="https://github.com/joaotavora/eglot/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64"
+fi
+
 DESCRIPTION="A minimal Emacs LSP client"
 HOMEPAGE="https://github.com/joaotavora/eglot"
-SRC_URI="https://github.com/joaotavora/eglot/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64"
 # test requires internet connection to install several language servers, one of which
 # is not packaged
 RESTRICT="test"
