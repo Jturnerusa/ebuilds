@@ -3,19 +3,18 @@
 
 EAPI=8
 
-inherit elisp
+inherit elisp git-r3
 
 DESCRIPTION="Highlighting indentation for Emacs"
-# The latest github release is from 2015, but the latest commit is from Feb 2021,
-# so I think it’s a good idea to use a snapshot here.
-MY_COMMIT="d88db4248882da2d4316e76ed673b4ac1fa99ce3"
 HOMEPAGE="https://github.com/antonj/Highlight-Indentation-for-Emacs"
-SRC_URI="https://github.com/antonj/Highlight-Indentation-for-Emacs/archive/${MY_COMMIT}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/Highlight-Indentation-for-Emacs-${MY_COMMIT}"
+
+EGIT_REPO_URI="https://github.com/antonj/Highlight-Indentation-for-Emacs/"
+EGIT_BRANCH="master"
+EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
+S="${EGIT_CHECKOUT_DIR}"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="~amd64"
 
 SITEFILE="50highlight-indentation-gentoo.el"
 DOCS=( README.org )
