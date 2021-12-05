@@ -14,13 +14,9 @@ if [[ ${PV} = "9999" ]]; then
 	EGIT_CHECKOUT_DIR="${WORKDIR}/${PN}"
 	S="${EGIT_CHECKOUT_DIR}"
 else
-	if [[ ${PV} = *_p* ]]; then
-		COMMIT="784f184cdd9f9cb4e3dbb997c09d93e954142842"
-		SRC_URI="https://github.com/flycheck/flycheck/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
-		S="${WORKDIR}/${PN}-${COMMIT}"
-	else
-		SRC_URI="https://github.com/flycheck/flycheck/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
-	fi
+	COMMIT="784f184cdd9f9cb4e3dbb997c09d93e954142842"
+	SRC_URI="https://github.com/flycheck/flycheck/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
+	S="${WORKDIR}/${PN}-${COMMIT}"
 	KEYWORDS="~amd64"
 fi
 
