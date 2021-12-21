@@ -24,11 +24,14 @@ HOMEPAGE="https://emacs-lsp.github.io/lsp-mode/"
 LICENSE="GPL-3+"
 SLOT="0"
 
-RDEPEND=">=app-emacs/dash-2.18.0
+RDEPEND="
+	>=app-emacs/dash-2.18.0
 	>=app-emacs/f-0.20.0
+	>=app-emacs/ht-2.3
 	>=app-emacs/lv-0.15.0
-	>=app-emacs/markdown-mode-2.4
-	>=app-emacs/spinner-1.7.4"
+	>=app-emacs/markdown-mode-2.3
+	>=app-emacs/spinner-1.7.3
+"
 DEPEND="${RDEPEND}"
 
 SITEFILE="50${PN}-gentoo.el"
@@ -49,7 +52,7 @@ src_install() {
 pkg_postinst() {
 	elisp_pkg_postinst
 	optfeature "lsp-mode UI integration" app-emacs/lsp-ui
-	optfeature "real-time diagnostics" app-emacs/flycheck
+	optfeature "on the fly diagnostics" app-emacs/flycheck
 	optfeature "code completion" app-emacs/company-mode
 	optfeature "helm integration" app-emacs/helm
 	optfeature "projectile integration" app-emacs/projectile
