@@ -1,4 +1,4 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -38,3 +38,8 @@ RDEPEND=">=app-emacs/dash-2.12.1
 SITEFILE="50${PN}-gentoo.el"
 DOCS=( README.md )
 ELISP_REMOVE="flycheck-buttercup.el flycheck-ert.el"
+
+src_compile() {
+	elisp-make-autoload-file "${S}"/${PN}-autoload.el "${S}"/
+	elisp_src_compile
+}
