@@ -38,12 +38,14 @@ SITEFILE="50${PN}-gentoo.el"
 DOCS=( README.md CHANGELOG.org )
 RESTRICT="test" # test requires ert-runner which is not packaged
 
+BYTECOMPFLAGS="${BYTECOMPFLAGS} -L ${S}/clients/"
+
 src_compile() {
-	${EMACS} ${EMACSFLAGS} -L . -L "${S}"/clients -f batch-byte-compile *.el "${S}"/clients/*.el
+	elisp-compile "${S}"/*.el "${S}"/clients/*.el
+	elisp-make-autoload-file "${S}"/${PN}-autoload.el "${S}"/
 }
 
 src_install() {
-	elisp-make-autoload-file "${S}"/${PN}-autoload.el "${S}"/
 	elisp-install ${PN} *.el *.elc
 	elisp-install ${PN}/clients "${S}"/clients/{*.el,*.elc}
 	elisp-site-file-install ${FILESDIR}/${SITEFILE}
