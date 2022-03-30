@@ -29,7 +29,6 @@ HOMEPAGE="https://www.flycheck.org/"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64"
 RESTRICT="test" # test requires cask and ert-runner which are not packaged yet
 
 RDEPEND=">=app-emacs/dash-2.12.1
