@@ -18,10 +18,10 @@ SLOT="0"
 KEYWORDS="~amd64"
 RESTRICT="test" # test requires cask and ert-runner which are not packaged yet
 
-RDEPEND=">=app-emacs/dash-2.12.1
-	>=app-emacs/pkg-info-0.4"
+RDEPEND=">=app-emacs/dash-2.12.1"
 
-SITEFILE="50${PN}-gentoo-r1.el"
+SITEFILE="50${PN}-gentoo.el"
+PATCHES=( ${FILESDIR}/${P}-no-pkg-info.diff )
 DOCS=( README.md )
 ELISP_REMOVE="flycheck-buttercup.el flycheck-ert.el"
 
