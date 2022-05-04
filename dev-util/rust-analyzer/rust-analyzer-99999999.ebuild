@@ -1,4 +1,4 @@
-# Copyright 2021 Gentoo Authors
+# Copyright 2021-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -9,7 +9,7 @@ inherit cargo git-r3
 
 DESCRIPTION="A language server for the Rust programming language"
 HOMEPAGE="https://rust-analyzer.github.io/"
-EGIT_REPO_URI="https://github.com/rust-analyzer/rust-analyzer"
+EGIT_REPO_URI="https://github.com/rust-lang/rust-analyzer"
 EGIT_BRANCH="master"
 EGIT_CHECKOUT_DIR="${WORKDIR}/${PN}"
 S="${EGIT_CHECKOUT_DIR}"
