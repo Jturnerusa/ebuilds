@@ -17,9 +17,6 @@ S="${EGIT_CHECKOUT_DIR}"
 LICENSE="0BSD Apache-2.0 Artistic-2 BSD Boost-1.0 CC0-1.0 ISC MIT Unlicense ZLIB"
 SLOT="0"
 
-BDEPEND="${BDEPEND}
-	>=dev-lang/rust-1.55.0"
-
 RESTRICT="test"
 DOCS=( README.md PRIVACY.md )
 
