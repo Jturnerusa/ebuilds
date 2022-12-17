@@ -1,0 +1,13 @@
+diff --git a/str.asd b/str.asd
+index 90d96dc..8c89fcf 100644
+--- a/str.asd
++++ b/str.asd
+@@ -13,8 +13,4 @@
+                :cl-ppcre-unicode
+                :cl-change-case)
+   :components ((:file "str"))
+-
+-  :long-description
+-  #.(uiop:read-file-string
+-     (uiop:subpathname *load-pathname* "README.md"))
+   :in-order-to ((test-op (test-op :str.test))))

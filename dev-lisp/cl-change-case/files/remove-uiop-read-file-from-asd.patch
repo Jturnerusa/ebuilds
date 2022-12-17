@@ -1,0 +1,13 @@
+diff --git a/cl-change-case.asd b/cl-change-case.asd
+index 772f112..ff699b5 100644
+--- a/cl-change-case.asd
++++ b/cl-change-case.asd
+@@ -1,7 +1,7 @@
+ ;;; cl-change-case.asd
+ 
+ (defsystem "cl-change-case"
+-  :version (:read-file-line "version")
++  :version "0.2.0"
+   :author "Sebastian Christ"
+   :mailto "rudolfo.christ@gmail.com"
+   :license "LLGPL"

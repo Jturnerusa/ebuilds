@@ -14,5 +14,9 @@ LICENSE="LLGPL-2.1"
 SLOT=0
 KEYWORDS="~amd64"
 
-RDEPENDS="dev-lisp/cl-ppre
-	dev-lisp/cl-ppre-unicode"
+RDEPENDS="dev-lisp/cl-ppcre
+	dev-lisp/cl-ppcre-unicode"
+
+PATCHES=(
+	"${FILESDIR}/remove-uiop-read-file-from-asd.patch"
+)
