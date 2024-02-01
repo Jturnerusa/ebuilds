@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>jturner.usa+gentoo@gmail.com</email>
+    <name>John Turner</name>
+  </maintainer>
+  <upstream>
+    <remote-id type="github">skeeto/nasm-mode</remote-id>
+    <doc>https://github.com/skeeto/nasm-mode/blob/master/README.md</doc>
+  </upstream>
+  <longdescription>
+    Major mode for editing NASM assembly programs.
+  </longdescription>
+</pkgmetadata>
