@@ -7,7 +7,7 @@ inherit elisp
 
 DESCRIPTION="Tree sitter mode for WGSL"
 HOMEPAGE="https://github.com/Jturnerusa/wgsl-ts-mode"
-SRC_URI="https://github.com/Jturnerusa/wgsl-ts-mode/archive/refs/tags/v0.1.tar.gz"
+SRC_URI="https://github.com/Jturnerusa/wgsl-ts-mode/archive/refs/tags/v0.1.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
