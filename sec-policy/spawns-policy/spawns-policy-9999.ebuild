@@ -22,7 +22,7 @@ KEYWORDS="~amd64"
 SELINUXTYPE="spawns"
 
 src_configure() {
-	local emesonargs=("-Dinstall_sources=true")
+	local emesonargs=("-Dmodular=true")
 	meson_src_configure
 }
 
