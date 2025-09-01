@@ -12,7 +12,7 @@ DESCRIPTION="Asyncio support for botocore library using aiohttp."
 HOMEPAGE="https://github.com/aio-libs/aiobotocore"
 SRC_URI="https://github.com/aio-libs/aiobotocore/archive/refs/tags/2.24.1.tar.gz -> ${P}.tar.gz"
 
-LICENSE="APACHE-2"
+LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
 
