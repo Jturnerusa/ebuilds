@@ -28,6 +28,7 @@ dev-python/aiohttp
 dev-python/aiosqlite
 dev-python/zstandard
 dev-python/bozo4
+dev-python/pygments
 "
 
 src_install() {
