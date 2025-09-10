@@ -17,7 +17,6 @@ EGIT_SSH_KEYS=(
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64"
 
 DEPEND="
 acct-user/pypaste
