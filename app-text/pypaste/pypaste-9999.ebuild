@@ -18,6 +18,8 @@ EGIT_SSH_KEYS=(
 LICENSE="GPL-3"
 SLOT="0"
 
+IUSE="client server"
+
 DEPEND="
 acct-user/pypaste
 acct-group/pypaste
@@ -30,6 +32,11 @@ dev-python/zstandard
 dev-python/bozo4
 dev-python/pygments
 "
+
+src_configure() {
+	local emesonargs=($(meson_feature client) $(meson_feature server))
+	meson_src_configure
+}
 
 src_install() {
 	dobin ${S}/bin/pypaste
