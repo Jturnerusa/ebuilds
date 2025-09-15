@@ -1,4 +1,4 @@
-# Copyright 1999-2025 Gentoo Authors
+# Copyright 1999-2024 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: git-r3.eclass
@@ -196,11 +196,6 @@ EVCS_STORE_DIRS=()
 # commit from the branch will be used. Note that if set to a commit
 # not on HEAD branch, EGIT_BRANCH needs to be set to a branch on which
 # the commit is available.
-
-# @ECLASS_VARIABLE: EGIT_SSH_KEYS
-# @DESCRIPTION:
-# SSH keys used to verify commit signatures.
-EGIT_SSH_KEYS=()
 
 # @ECLASS_VARIABLE: EGIT_COMMIT_DATE
 # @DEFAULT_UNSET
@@ -516,6 +511,7 @@ _git-r3_set_subrepos() {
 		subrepos=( "${suburl}" )
 	fi
 }
+
 
 # @FUNCTION: _git-r3_is_local_repo
 # @USAGE: <repo-uri>
@@ -1134,17 +1130,6 @@ git-r3_peek_remote_ref() {
 	return 1
 }
 
-git-r3_configure_allowed_signers() {
-	local key
-
-	for key in "${EGIT_SSH_KEYS[@]}"; do
-		einfo "adding ${key} to allowed signers file"
-		<<<"${key}" cat >>${T}/allowed-signers || die
-	done
-
-	git config --global 'gpg.ssh.allowedSignersFile' ${T}/allowed-signers || die
-}
-
 git-r3_src_fetch() {
 	debug-print-function ${FUNCNAME} "$@"
 
@@ -1159,44 +1144,11 @@ git-r3_src_fetch() {
 	git-r3_fetch
 }
 
-git-r3_verify() {
-	local repos
-
-	if [[ $(declare -p EGIT_REPO_URI) == "declare -a"* ]]; then
-		repos=( "${EGIT_REPO_URI[@]}" )
-	else
-		repos=( ${EGIT_REPO_URI} )
-	fi
-
-	local -x GIT_DIR
-	_git-r3_set_gitdir "${repos[0]}"
-
-	git-r3_configure_allowed_signers
-
-	local commit
-	if [[ -n ${EGIT_BRANCH} ]]; then
-		commit=${EGIT_BRANCH}
-	elif [[ -n ${EGIT_COMMIT} ]]; then
-		commit=${EGIT_COMMIT}
-	else
-		commit=HEAD
-	fi
-
-	ebegin "verifing ${commit}"
-	git --git-dir ${GIT_DIR} verify-commit ${commit}
-	eend $? || die
-}
-
 git-r3_src_unpack() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	_git-r3_env_setup
 	git-r3_src_fetch
-
-	if (( ${#EGIT_SSH_KEYS[@]} > 0)); then
-		git-r3_verify
-	fi
-
 	git-r3_checkout
 
 	if [[ ! ${EGIT_LFS} && ${_EGIT_LFS_FILTERS_FOUND} ]]; then
@@ -1205,7 +1157,6 @@ git-r3_src_unpack() {
 	if [[ ${EGIT_LFS} && ! ${_EGIT_LFS_FILTERS_FOUND} ]]; then
 		eqawarn "QA Notice: There are no Git LFS filters setup in the cloned repo. EGIT_LFS will do nothing!"
 	fi
-
 }
 
 # https://bugs.gentoo.org/show_bug.cgi?id=482666
