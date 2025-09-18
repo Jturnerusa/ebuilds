@@ -86,6 +86,12 @@ case ${VERIFY_SIG_METHOD} in
 			)
 		"
 		;;
+	git)
+		BDEPEND="
+			dev-vcs/git
+			app-portage/gemato
+		"
+		;;
 	*)
 		die "${ECLASS}: unknown method '${VERIFY_SIG_METHOD}'"
 		;;
@@ -94,6 +100,8 @@ esac
 # @ECLASS_VARIABLE: VERIFY_SIG_OPENPGP_KEY_PATH
 # @DEFAULT_UNSET
 # @DESCRIPTION:
+# Note: This variable is deprecated. Please use VERIFY_SIG_KEYS in new ebuilds.
+#
 # Path to key bundle used to perform the verification.  This is required
 # when using default src_unpack.  Alternatively, the key path can be
 # passed directly to the verification functions.
@@ -103,6 +111,11 @@ esac
 # This variable is also used for non-OpenPGP signatures.  The name
 # contains "OPENPGP" for historical reasons.  It is not used
 # for sigstore, since it uses a single trusted root.
+
+# @ECLASS_VARIABLE: VERIFY_SIG_KEY_PATHS
+# @DESCRIPTION:
+# Just like VERIFY_SIG_OPENPGP_KEY_PATH but an array.
+VERIFY_SIG_KEY_PATHS=(${VERIFY_SIG_OPENPGP_KEY_PATH})
 
 # @ECLASS_VARIABLE: VERIFY_SIG_CERT_IDENTITY
 # @DEFAULT_UNSET
@@ -453,6 +466,49 @@ verify-sig_uncompress_verify_unpack() {
 		"${unpacker[@]}" "${file}" | tee >(tar -xf - || die)
 		pipestatus || die
 	)
+}
+
+# @FUNCTION: verify-sig_verify_git_repo
+verify-sig_verify_git_repo() {
+	local git_dir="${1}" commit="${2}"
+
+	local args
+	[[ -n ${VERIFY_SIG_OPENPGP_KEY_REFRESH} ]] || args+=(-R)
+
+	local key found_pgp_key
+	for key in "${VERIFY_SIG_KEY_PATHS[@]}"; do
+		dir=$(dirname "${key}")
+		base=$(basename "${dir}")
+
+		case ${base} in
+			openpgp-keys)
+				args+=(-K "${key}")
+				found_pgp_key=yes
+				;;
+			ssh-keys)
+				cat "${key}" >> ${T}/allowed_signers || die
+				;;
+			*)
+				die "unknown key type ${base}"
+				;;
+		esac
+	done
+
+	git config --global 'gpg.ssh.allowedSignersFile' ${T}/allowed_signers || die
+
+	# gemato *requires* at least one pgp key is passed to it, so if we don't find a pgp key
+	# we don't use gemato at all.
+	ebegin "verifying ${git_dir}/${commit}"
+	case ${found_pgp_key} in
+		yes)
+			gemato gpg-wrap ${args[@]} -- git --git-dir ${git_dir} verify-commit ${commit}
+			;;
+		*)
+			git --git-dir ${git_dir} verify-commit ${commit}
+			;;
+	esac
+	eend $? || die $?
+
 }
 
 # @FUNCTION: verify-sig_src_unpack

@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: git-r3.eclass
@@ -32,6 +32,12 @@ esac
 
 if [[ -z ${_GIT_R3_ECLASS} ]]; then
 _GIT_R3_ECLASS=1
+
+case ${VERIFY_SIG_METHOD} in
+	git)
+		inherit verify-sig
+		;;
+esac
 
 PROPERTIES+=" live"
 
@@ -511,7 +517,6 @@ _git-r3_set_subrepos() {
 		subrepos=( "${suburl}" )
 	fi
 }
-
 
 # @FUNCTION: _git-r3_is_local_repo
 # @USAGE: <repo-uri>
@@ -1149,6 +1154,32 @@ git-r3_src_unpack() {
 
 	_git-r3_env_setup
 	git-r3_src_fetch
+
+	if use "verify-sig"; then
+
+		local repos
+
+		if [[ $(declare -p EGIT_REPO_URI) == "declare -a"* ]]; then
+			repos=( "${EGIT_REPO_URI[@]}" )
+		else
+			repos=( ${EGIT_REPO_URI} )
+		fi
+
+		local -x GIT_DIR
+		_git-r3_set_gitdir "${repos[0]}"
+
+		local commit
+		if [[ -n ${EGIT_BRANCH} ]]; then
+			commit=${EGIT_BRANCH}
+		elif [[ -n ${EGIT_COMMIT} ]]; then
+			commit=${EGIT_COMMIT}
+		else
+			commit=HEAD
+		fi
+
+		verify-sig_verify_git_repo "${GIT_DIR}" "${commit}"
+	fi
+
 	git-r3_checkout
 
 	if [[ ! ${EGIT_LFS} && ${_EGIT_LFS_FILTERS_FOUND} ]]; then
