@@ -3,7 +3,9 @@
 
 EAPI=8
 
-inherit git-r3 meson
+VERIFY_SIG_METHOD="git"
+
+inherit verify-sig git-r3 meson
 
 DESCRIPTION="Spawns personal selinux policy, based off of dssp5."
 HOMEPAGE="https://jturnerusa.dev/cgit/selinux-policy"
@@ -11,9 +13,7 @@ EGIT_REPO_URI="https://jturnerusa.dev/cgit/selinux-policy/"
 
 BDEPEND="sys-apps/secilc"
 
-EGIT_SSH_KEYS=(
-	'jturner.usa@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA3D6QtWHDFV5agz2Ms/wPOAmRSuH3xGfsI/a8Nnex0c'
-)
+VERIFY_SIG_KEY_PATHS=(/usr/share/ssh-keys/jturnerusa.asc)
 
 LICENSE="GPL-3"
 SLOT="0"

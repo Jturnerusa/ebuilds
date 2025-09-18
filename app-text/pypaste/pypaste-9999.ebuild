@@ -5,15 +5,15 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{11..13} )
 
-inherit git-r3 meson python-single-r1
+VERIFY_SIG_METHOD="git"
+
+inherit verify-sig git-r3 meson python-single-r1
 
 DESCRIPTION="A simple paste service that stores data in S3, and provides syntax highlighting with pygments."
 HOMEPAGE="https://jturnerusa.dev/cgit/pypaste"
 EGIT_REPO_URI="https://jturnerusa.dev/cgit/pypaste"
 
-EGIT_SSH_KEYS=(
-	'jturner.usa@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA3D6QtWHDFV5agz2Ms/wPOAmRSuH3xGfsI/a8Nnex0c'
-)
+VERIFY_SIG_KEY_PATHS=(/usr/share/ssh-keys/jturnerusa.asc)
 
 LICENSE="GPL-3"
 SLOT="0"

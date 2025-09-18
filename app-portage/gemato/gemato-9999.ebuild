@@ -7,7 +7,9 @@ DISTUTILS_USE_PEP517=flit
 PYTHON_COMPAT=( python3_{11..14} pypy3_11 )
 PYTHON_REQ_USE='threads(+),ssl(+)'
 
-inherit distutils-r1 git-r3
+VERIFY_SIG_METHOD="git"
+
+inherit verify-sig distutils-r1 git-r3
 
 DESCRIPTION="Stand-alone Manifest generation & verification tool"
 HOMEPAGE="
@@ -16,7 +18,7 @@ HOMEPAGE="
 "
 EGIT_REPO_URI="https://jturnerusa.dev/cgit/gemato"
 
-EGIT_SSH_KEYS=(
+VERIFY_SIG_KEYS=(
 	'jturner.usa@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA3D6QtWHDFV5agz2Ms/wPOAmRSuH3xGfsI/a8Nnex0c'
 )
 
