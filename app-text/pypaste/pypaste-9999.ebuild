@@ -39,7 +39,6 @@ src_configure() {
 }
 
 src_install() {
-	dobin ${S}/bin/pypaste
 	newconfd ${S}/pypaste-confd pypaste
 	newinitd ${S}/pypaste-initd pypaste
 	meson_install
