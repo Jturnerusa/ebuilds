@@ -39,8 +39,6 @@ src_configure() {
 }
 
 src_install() {
-	newconfd ${S}/pypaste-confd pypaste
-	newinitd ${S}/pypaste-initd pypaste
 	meson_install
 	python_optimize
 }
