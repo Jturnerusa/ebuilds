@@ -494,17 +494,20 @@ verify-sig_verify_git_repo() {
 		esac
 	done
 
-	git config --global 'gpg.ssh.allowedSignersFile' ${T}/allowed_signers || die
-
 	# gemato *requires* at least one pgp key is passed to it, so if we don't find a pgp key
 	# we don't use gemato at all.
 	ebegin "verifying ${git_dir}/${commit}"
 	case ${found_pgp_key} in
 		yes)
-			gemato gpg-wrap ${args[@]} -- git --git-dir ${git_dir} verify-commit ${commit}
+			gemato gpg-wrap ${args[@]} -- git \
+				   -c "gpg.ssh.allowedSignersFile=${T}/allowed_signers" \
+				   --git-dir ${git_dir} \
+				   verify-commit ${commit}
 			;;
 		*)
-			git --git-dir ${git_dir} verify-commit ${commit}
+			git -c "gpg.ssh.allowedSignersFile=${T}/allowed_signers" \
+				--git-dir ${git_dir} \
+				verify-commit ${commit}
 			;;
 	esac
 	eend $? || die $?
