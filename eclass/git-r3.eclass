@@ -1155,7 +1155,7 @@ git-r3_src_unpack() {
 	_git-r3_env_setup
 	git-r3_src_fetch
 
-	if use "verify-sig"; then
+	if in_iuse "verify-sig" && use "verify-sig"; then
 
 		local repos
 
