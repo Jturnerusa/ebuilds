@@ -7,6 +7,7 @@ inherit acct-user
 
 DESCRIPTION="Buildbot program user"
 ACCT_USER_ID=393
+ACCT_USER_GROUPS=(buildbot)
 
 ACCT_USER_HOME=/var/lib/buildbot
 ACCT_USER_HOME_PERMS=0700
